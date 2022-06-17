@@ -24,10 +24,14 @@ export async function saveSubscription(
     price_id: subscription.items.data[0].price.id,
   };
 
+  console.log("antes de criar", subscriptionData);
+
   if (createAction) {
     await fauna.query(
       q.Create(q.Collection("subscriptions"), { data: subscriptionData })
     );
+
+    console.log("depois de criar a colletion", subscriptionData);
   } else {
     await fauna.query(
       q.Replace(
